@@ -10,6 +10,6 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// https://klassenlist.herokuapp.com/
+	// https://klassenlisteugur.herokuapp.com/
 
 }
