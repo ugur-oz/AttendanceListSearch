@@ -6,9 +6,9 @@ import javax.persistence.*;
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Person {
+public abstract class Users {
     @Id
-    private long id;
+    private long username;
 
     @Column
     private String firstname;
@@ -18,4 +18,10 @@ public abstract class Person {
 
     @Column
     private String password;
+
+    private boolean enabled;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Authorities authority;
+
 }

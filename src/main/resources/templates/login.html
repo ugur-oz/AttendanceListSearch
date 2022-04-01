@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:tiles="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+<div tiles:fragment="content">
+    <form name="f" th:action="@{/login}" method="post">
+        <label for="username">Benutzername</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Passwort</label>
+        <input type="password" id="password" name="password"/>
+        <button type="submit">einloggen</button>
+    </form>
+</div>
+</body>
+</html>
