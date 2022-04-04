@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers((HttpMethod.GET),"/umschuler/**").hasRole("umschuler")
                 .antMatchers((HttpMethod.GET),"/dozent/**").hasRole("dozent")
                 .antMatchers((HttpMethod.GET),"/verwaltung/**").hasRole("verwaltung")
-                .and().formLogin().loginPage("/login").successForwardUrl("/umschuler/**").successForwardUrl("/dozent/**").successForwardUrl("/verwaltung/**")
+                .and().formLogin().loginPage("/login").successForwardUrl("/dozent/**")//.successForwardUrl("/umschuler/**").successForwardUrl("/verwaltung/**")
                 .and()
                 .logout().invalidateHttpSession(true).clearAuthentication(true).logoutSuccessUrl("/login").permitAll();
 
@@ -56,7 +56,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers((HttpMethod.GET),"/dozent/**").hasRole("dozent")
                 .and()
                 .csrf().disable();
-
     }
 
     @Bean
