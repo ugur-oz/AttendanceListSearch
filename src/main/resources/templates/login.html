@@ -56,7 +56,8 @@
         }
     </style>
 </head>
-<img class="center-block image-center" src="mischok-logo.png">
+<body>
+<img class="center-block image-center" th:src="@{images/mischok-logo.png}">
 <div class="container" tiles:fragment="content">
     <div class="wrapper">
         <form class="form-signin" method="post" name="f" style="margin-top:-50px" th:action="@{/login}">
@@ -71,3 +72,4 @@
         </form>
     </div>
 </div>
+</body>
