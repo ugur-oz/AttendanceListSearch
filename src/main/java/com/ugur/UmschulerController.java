@@ -22,10 +22,10 @@ public class UmschulerController {
         return "login";
     }
 
-    @GetMapping("/umschuler")
+    @GetMapping("/dozent")
     public String getUmschuler(){
 
-        return "umschuler";
+        return "dozent";
     }
 
 
