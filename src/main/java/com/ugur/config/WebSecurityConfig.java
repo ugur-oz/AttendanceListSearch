@@ -1,4 +1,4 @@
-package com.ugur;
+package com.ugur.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers( "/css/**", "/images/**", "/favicon.ico").permitAll()
+                .antMatchers( "/css/**", "/images/**", "/favicon.ico","/h2-console/**").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
