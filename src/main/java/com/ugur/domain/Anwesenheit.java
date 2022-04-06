@@ -21,5 +21,4 @@ public class Anwesenheit {
 
     @Column
     private String signature;
-
 }

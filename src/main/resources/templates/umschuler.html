@@ -27,7 +27,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-10">
-            <p th:text="${#temporals.formatISO(timestamp)}"></p>
+            <form class="form" method="post" th:action="umschuler" th:object="${saveAnwesenheit}">
+
             <div style="text-align: center;">
                 <canvas height="160" id="sig-canvas" required width="600"></canvas>
             </div>
@@ -42,6 +43,7 @@
 
             <textarea  class="form-control" id="sig-dataUrl"></textarea>
             <img alt="Your signature will go here!" id="sig-image" src=""/>
+                </form>
         </div>
     </div>
 </div>
