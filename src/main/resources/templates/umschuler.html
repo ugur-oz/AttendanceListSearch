@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>login</title>
@@ -14,10 +14,16 @@
         border-radius: 15px;
         cursor: crosshair;
     }
+    .logout {
+        position:fixed;
+        right:10px;
+        top:5px;
+    }
 </style>
 <body>
 
 <img class="center-block image-center" th:src="@{images/mischok-logo.png}">
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]</h1>
 <div class="container-fluid">
     <div class="row">
         <div class="col-10">
@@ -29,6 +35,11 @@
                 <button class="btn btn-primary" id="sig-submitBtn">Submit Signature</button>
                 <button class="btn btn-danger" id="sig-clearBtn">Clear Signature</button>
             </div>
+
+            <form class="logout" th:action="@{/logout}" method="post">
+                <button class="btn btn-warning" type="submit" value="Sign Out"/>Sign Out</button>
+            </form>
+
             <textarea  class="form-control" id="sig-dataUrl"></textarea>
             <img alt="Your signature will go here!" id="sig-image" src=""/>
         </div>
@@ -38,7 +49,7 @@
 <script crossorigin="anonymous"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+</div>
 <script>
     (function () {
         window.requestAnimFrame = (function (callback) {

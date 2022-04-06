@@ -1,4 +1,4 @@
-package com.ugur;
+package com.ugur.domain;
 
 import lombok.Data;
 
