@@ -1,4 +1,4 @@
-package com.ugur;
+package com.ugur.domain;
 
 import com.ugur.domain.Anwesenheit;
 import com.ugur.domain.Dozent;
@@ -18,8 +18,8 @@ public class Controller {
 
     @PostMapping("/umschuler")
     public String saveAnwesenheit(Model model, Anwesenheit anwesenheit) {
-        model.addAttribute("saveAnwesenheit", anwesenheit);
-        model.addAttribute("umschuler.datum", Instant.now());
+        model.addAttribute("anwesenheit", anwesenheit);
+
         System.out.println(anwesenheit);
         return "umschuler";
     }
