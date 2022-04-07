@@ -1,14 +1,11 @@
 package com.ugur.domain;
 
-import com.ugur.domain.Anwesenheit;
-import com.ugur.domain.Dozent;
 import com.ugur.repository.AnwesenheitRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.time.Instant;
 
 @org.springframework.stereotype.Controller
 public class Controller {

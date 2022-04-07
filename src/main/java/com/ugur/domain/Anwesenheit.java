@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -17,7 +17,7 @@ public class Anwesenheit {
     private String umschuler_id;
 
     @Column
-    private Timestamp datum;
+    private LocalDateTime datum;
 
     @Column
     private String signature;

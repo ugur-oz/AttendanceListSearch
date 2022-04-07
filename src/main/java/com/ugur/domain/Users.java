@@ -19,9 +19,5 @@ public abstract class Users {
     @Column
     private String password;
 
-    private boolean enabled;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    private Authorities authority;
 
 }
