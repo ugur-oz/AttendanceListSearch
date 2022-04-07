@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Users {
     @Id
-    private long username;
+    private String username;
 
     @Column
     private String firstname;

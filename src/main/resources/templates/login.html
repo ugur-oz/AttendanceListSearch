@@ -68,25 +68,29 @@
 </head>
 <body>
 <div class="center-block image-center" style="text-align: center;">
-    <img class="welcome" th:src="@{images/welcome.png}">
-    <img th:src="@{images/mischok-logo.png}">
+    <img class="welcome img-fluid" th:src="@{images/welcome.png}">
+    <img class="img-fluid" th:src="@{images/mischok-logo.png}">
 </div>
 <div class="container" tiles:fragment="content">
-    <div class="wrapper">
-        <form class="form login" method="post" th:action="@{/login}">
-            <h3 class="form-signin-heading">Welcome Back! Bitte Log In</h3>
-            <hr class="colorgraph">
-            <br>
-            <input autofocus="" class="form-control" id="username" name="username" placeholder="Username" required=""
-                   type="text"/>
-            <input class="form-control" id="password" name="password" placeholder="Password" required=""
-                   type="password"/>
-            <button class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit" value="Login">Login</button>
-        </form>
+    <div class="row">
+        <div class=”col-sm-4″>
+            <form class="flex-box" method="post" th:action="@{/login}">
+                <h3 class="form-signin-heading">Welcome Back! Bitte Log In</h3>
+                <hr class="colorgraph">
+                <br>
+                <input autofocus="" class="form-control" id="username" name="username" placeholder="Username"
+                       required=""
+                       type="text"/>
+                <input class="form-control" id="password" name="password" placeholder="Password" required=""
+                       type="password"/>
+                <button class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit" value="Login">Login
+                </button>
+            </form>
+        </div>
     </div>
-    <div class="text--center" th:if="${param.error}">
-        Ungültiger Benutzername oder Passwort.
-    </div>
+</div>
+<div class="text--center" th:if="${param.error}">
+    Ungültiger Benutzername oder Passwort.
 </div>
 
 </body>

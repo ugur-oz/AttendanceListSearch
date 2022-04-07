@@ -11,10 +11,10 @@ import java.sql.Timestamp;
 @Entity
 public class Anwesenheit {
     @Id
-    private long id;
+    private Long id;
 
     @Column
-    private long umschuler_id;
+    private String umschuler_id;
 
     @Column
     private Timestamp datum;
