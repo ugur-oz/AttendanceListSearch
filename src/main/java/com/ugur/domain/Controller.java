@@ -25,7 +25,7 @@ public class Controller {
 
         System.out.println(anwesenheit);
 
-        anwesenheitRepo.save(anwesenheit);
+
         return "umschuler";
     }
 
