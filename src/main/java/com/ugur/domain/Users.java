@@ -8,15 +8,17 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Users {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "username")
     private String username;
 
-    @Column
+    @Column(name= "firstname")
     private String firstname;
 
-    @Column
+    @Column(name= "lastname")
     private String lastname;
 
-    @Column
+    @Column (name= "password")
     private String password;
 
 

@@ -2,23 +2,24 @@ package com.ugur.domain;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
 public class Anwesenheit {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column
-    private String umschuler_id;
+    @ManyToOne
+    @JoinColumn(name="umschuler_username")
+    private Umschuler umschuler;
 
-    @Column
+    @Column(name = "datum")
     private LocalDateTime datum;
 
-    @Column
+    @Column(name = "signature")
     private String signature;
 }

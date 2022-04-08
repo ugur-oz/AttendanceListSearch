@@ -30,7 +30,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-10">
-            <form class="form" method="post" th:action="umschuler" th:object="${anwesenheit}">
+            <form class="form" method="post" th:action="umschuler" th:object="${anwesenheitToSave}">
+                <input type="hidden" th:field="*{id}">
                 <div id="ts1"></div>
                 <div style="text-align: center;">
                     <canvas height="160" id="sig-canvas" required width="600"></canvas>
