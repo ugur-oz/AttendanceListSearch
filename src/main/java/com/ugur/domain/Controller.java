@@ -15,13 +15,23 @@ public class Controller {
 
 
     @GetMapping ("/umschuler")
-    public String getAnwesenheit(Model model) {
+    public String showAnwesenheit(Model model, Anwesenheit anwesenheit) {
+        model.addAttribute("anwesenheitToSave", anwesenheit);
+
+        System.out.println(anwesenheit);
+
+
         return "umschuler";
     }
 
+
+
+
+
+
     @PostMapping("/umschuler")
     public String saveAnwesenheit(Model model, Anwesenheit anwesenheit) {
-        model.addAttribute("anwesenheit", anwesenheit);
+        model.addAttribute("anwesenheitToSave", anwesenheit);
 
         System.out.println(anwesenheit);
 
