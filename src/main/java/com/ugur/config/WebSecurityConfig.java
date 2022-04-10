@@ -1,17 +1,19 @@
 package com.ugur.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+    /*
     private AuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Autowired
@@ -19,24 +21,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.authenticationSuccessHandler = authenticationSuccessHandler;
     }
 
+     */
+
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers( "/css/**", "/images/**", "/favicon.ico","/h2-console/**").permitAll()
+                .antMatchers( "/css/**", "/images/**", "/favicon.ico","/h2-console/**",
+                        "http://localhost:8080/h2-console/login.do?jsessionid=/**",
+                        "http://localhost:8080/h2-console/login.do?jsessionid/**","jdbc:h2:./target/mydb","/target/mydb/**").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .successHandler(authenticationSuccessHandler)
+               // .successHandler(authenticationSuccessHandler)
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll()
-                .and().csrf().disable(); // we'll enable this in a later blog post
+                .and()
+                .csrf().disable()
+                .headers().frameOptions().disable(); // h2 ye baglanmak icin bu ve önceki satir gerekli
+
     }
 
+    @Bean
+    @Override
+    public UserDetailsService userDetailsService() {
+        return this.myUserDetailsService;
+    }
+/*
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -49,4 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("dozent").password("{noop}pass").roles("DOZENT");
     }
+
+ */
+
 }

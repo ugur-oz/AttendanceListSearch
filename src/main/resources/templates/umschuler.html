@@ -31,9 +31,8 @@
     <div class="row">
         <div class="col-10">
             <form class="form" method="post" th:action="umschuler" th:object="${anwesenheitToSave}">
-                <input type="hidden" th:field="*{id}">
                 <div id="ts1"></div>
-                <input type="hidden" value="LocalDateTime.now()" th:field="*{datum}">
+                <input th:field="*{timestamp}" type="hidden">
                 <div style="text-align: center;">
                     <canvas height="160" id="sig-canvas" required width="600"></canvas>
                 </div>
@@ -42,17 +41,16 @@
                     <button class="btn btn-danger" id="sig-clearBtn" type="reset">Clear Signature</button>
                     <button class="btn btn-primary" id="sig-submitBtn" type="submit">Submit Signature</button>
                 </div>
-
-                <form class="logout" method="post" th:action="@{/logout}">
-                    <input class="btn btn-warning" type="submit" value="Sign Out"/>
-                </form>
-
                 <div>
-                    <textarea th:field="*{signature}" id="sig-dataUrl" class="form-control" rows="5">Data URL for your signature will go here!</textarea>
+                    <textarea class="form-control" id="sig-dataUrl" rows="5" th:field="*{signature}">Data URL for your signature will go here!</textarea>
                     <button class="btn btn-primary" type="submit">Save</button>
                 </div>
                 <img alt="Your signature will go here!" id="sig-image" src=""/>
             </form>
+            <form class="logout" method="post" th:action="@{/logout}">
+                <input class="btn btn-warning" type="submit" value="Sign Out"/>
+            </form>
+
         </div>
     </div>
 </div>
@@ -201,7 +199,7 @@
 
     })();
 </script>
-<form th:action="@{/logout}" method="post">
+<form method="post" th:action="@{/logout}">
     <input type="submit" value="Sign Out"/>
 </form>
 </body>

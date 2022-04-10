@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
+/*
 @Configuration
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
@@ -27,5 +28,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         } else {
             httpServletResponse.sendRedirect("/umschuler");
         }
+
     }
 }
+
+
+ */
