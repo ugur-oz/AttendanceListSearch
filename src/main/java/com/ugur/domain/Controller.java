@@ -23,7 +23,7 @@ public class Controller {
     @GetMapping("/login")
     public String login() {
 
-        Umschuler umschuler = new Umschuler(5L,"as","sdw","asd","asd");
+        Umschuler umschuler = new Umschuler("as","sdw","asd","asd");
         usersRepo.save(umschuler);
         return "login";
     }

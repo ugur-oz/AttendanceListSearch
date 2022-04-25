@@ -36,4 +36,7 @@ public abstract class Users {
 
     public Users() {
     }
+
+    public Users(String password, String username, String firstname, String lastname) {
+    }
 }
