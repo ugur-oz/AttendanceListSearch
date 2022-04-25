@@ -13,9 +13,9 @@ import java.util.Optional;
 public class MyUserDetails implements UserDetails {
     private Users users;
 
-    public MyUserDetails(Optional<Users> users) {
-        this.users = users;
+    public MyUserDetails(Optional<Users> user) {
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
