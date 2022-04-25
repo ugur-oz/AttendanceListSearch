@@ -8,11 +8,52 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    DataSource dataSource;
+
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
+
+    @Bean
+    @Override
+    public UserDetailsService userDetailsService() {
+        return this.myUserDetailsService;
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/css/**", "/images/**", "/favicon.ico", "/h2-console/**",
+                                        "jdbc:h2:./target/mydb", "/target/mydb/**").permitAll()
+                .antMatchers("/admin").hasRole("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                // .successHandler(authenticationSuccessHandler)
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll()
+                .and()
+                .csrf().disable()
+                .headers().frameOptions().disable(); // h2 ye baglanmak icin bu ve önceki satir gerekli
+
+    }
+}
+
+
+
     /*
     private AuthenticationSuccessHandler authenticationSuccessHandler;
 
@@ -23,30 +64,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
      */
 
-    @Autowired
-    private MyUserDetailsService myUserDetailsService;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers( "/css/**", "/images/**", "/favicon.ico","/h2-console/**",
-                        "http://localhost:8080/h2-console/login.do?jsessionid=/**",
-                        "http://localhost:8080/h2-console/login.do?jsessionid/**","jdbc:h2:./target/mydb","/target/mydb/**").permitAll()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-               // .successHandler(authenticationSuccessHandler)
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll()
-                .and()
-                .csrf().disable()
-                .headers().frameOptions().disable(); // h2 ye baglanmak icin bu ve önceki satir gerekli
-
+    /*
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -54,7 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService() {
         return this.myUserDetailsService;
     }
-/*
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -67,7 +89,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("dozent").password("{noop}pass").roles("DOZENT");
     }
-
  */
 
-}

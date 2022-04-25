@@ -1,7 +1,9 @@
 package com.ugur.domain;
 
 import com.ugur.repository.AnwesenheitRepo;
+import com.ugur.repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,11 +17,21 @@ public class Controller {
     @Autowired
     AnwesenheitRepo anwesenheitRepo;
 
+    @Autowired
+    UsersRepo usersRepo;
+
+    @GetMapping("/login")
+    public String login() {
+
+        Umschuler umschuler = new Umschuler("user","asd","sdw","asd",true);
+        usersRepo.save(umschuler);
+        return "login";
+    }
 
     @GetMapping("/umschuler")
     public String showAnwesenheit(Model model, Anwesenheit anwesenheit) {
         model.addAttribute("anwesenheitToSave", anwesenheit);
-
+        model.addAttribute("timestamp", LocalDateTime.now());
         System.out.println(anwesenheit);
 
         return "umschuler";

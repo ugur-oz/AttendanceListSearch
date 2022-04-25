@@ -14,7 +14,7 @@ public class Anwesenheit {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="umschuler_username")
+    @JoinColumn(name="umschuler_id")
     private Umschuler umschuler;
 
     @Column(name = "datum")

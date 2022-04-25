@@ -1,5 +1,4 @@
 package com.ugur.domain;
-import com.ugur.domain.Users;
 import lombok.Data;
 import javax.persistence.Entity;
 

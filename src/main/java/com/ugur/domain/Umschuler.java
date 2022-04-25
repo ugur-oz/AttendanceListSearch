@@ -11,4 +11,12 @@ public class Umschuler extends Users {
 
     @OneToMany(mappedBy = "umschuler")
     private List<Anwesenheit> anwesenheitList;
+
+    public Umschuler(String username, String firstname, String lastname,String password, boolean enabled) {
+
+        super(username,firstname,lastname,password,enabled);
+    }
+
+    public Umschuler() {
+    }
 }
