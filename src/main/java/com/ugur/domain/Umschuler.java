@@ -15,4 +15,7 @@ public class Umschuler extends Users {
     public Umschuler(String password, String username, String firstname, String lastname) {
         super(password, username, firstname, lastname);
     }
+
+    public Umschuler() {
+    }
 }

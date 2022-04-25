@@ -26,6 +26,9 @@ public abstract class Users {
     @Column(name = "lastname")
     private String lastname;
 
+    @Column(name = "Roles")
+    private String roles;
+
     public Users(Long id, String password, String username, String firstname, String lastname) {
         this.id = id;
         this.password = password;

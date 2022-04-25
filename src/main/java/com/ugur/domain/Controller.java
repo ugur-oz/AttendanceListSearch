@@ -3,12 +3,12 @@ package com.ugur.domain;
 import com.ugur.repository.AnwesenheitRepo;
 import com.ugur.repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 
 @org.springframework.stereotype.Controller
@@ -20,11 +20,11 @@ public class Controller {
     @Autowired
     UsersRepo usersRepo;
 
+
     @GetMapping("/login")
     public String login() {
 
-        Umschuler umschuler = new Umschuler("as","sdw","asd","asd");
-        usersRepo.save(umschuler);
+
         return "login";
     }
 
@@ -37,15 +37,11 @@ public class Controller {
         return "umschuler";
     }
 
-
     @PostMapping("/umschuler")
     public String saveAnwesenheit(Model model, Anwesenheit anwesenheit) {
-        model.addAttribute("anwesenheitToSave", anwesenheit);
-        model.addAttribute("timestamp", LocalDateTime.now());
-        System.out.println(anwesenheit);
+
         return "umschuler";
     }
-
 
     @GetMapping("/dozent")
     public String getDozent(Model model) {
