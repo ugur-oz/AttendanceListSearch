@@ -12,9 +12,13 @@ public class Umschuler extends Users {
     @OneToMany(mappedBy = "umschuler")
     private List<Anwesenheit> anwesenheitList;
 
-    public Umschuler(String username, String firstname, String lastname,String password, boolean enabled) {
+    public Umschuler(Long id, String password, String username, String firstname, String lastname, List<Anwesenheit> anwesenheitList) {
+        super(id, password, username, firstname, lastname);
+        this.anwesenheitList = anwesenheitList;
+    }
 
-        super(username,firstname,lastname,password,enabled);
+    public Umschuler(Long id, String password, String username, String firstname, String lastname){
+        super(id, password, username, firstname, lastname);
     }
 
     public Umschuler() {

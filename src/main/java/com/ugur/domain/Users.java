@@ -26,16 +26,12 @@ public abstract class Users {
     @Column(name = "lastname")
     private String lastname;
 
-
-
-    private boolean enabled;
-
-    public Users(String username, String firstname, String lastname, String password, boolean enabled) {
+    public Users(Long id, String password, String username, String firstname, String lastname) {
+        this.id = id;
+        this.password = password;
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.password = password;
-        this.enabled = enabled;
     }
 
     public Users() {
