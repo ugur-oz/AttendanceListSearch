@@ -2,9 +2,11 @@ package com.ugur.domain;
 
 import lombok.Data;
 
-import java.util.*;
-
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -20,6 +22,9 @@ public class User {
     private String password;
     private boolean enabled;
 
+    @OneToMany(mappedBy = "user")
+    private List<Anwesenheit> anwesenheitList;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
@@ -27,6 +32,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
+
     public boolean hasRole(String roleName) {
         Iterator<Role> iterator = this.roles.iterator();
         while (iterator.hasNext()) {
@@ -38,11 +44,13 @@ public class User {
 
         return false;
     }
+
     public Long getId() {
         return id;
     }
 
 
-    public void addRole(Role roleUser) {
+    public void addRole(Role role) {
+        this.roles.add(role);
     }
 }

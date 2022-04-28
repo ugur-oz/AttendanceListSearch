@@ -18,5 +18,5 @@ public class Role {
         return id;
     }
 
-    // remaining getters and setters
+
 }

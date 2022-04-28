@@ -27,6 +27,8 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
             redirectURL = "dozent";
         } else if (userDetails.hasRole("EDITOR")) {
             redirectURL = "index";
+        } else if (userDetails.hasRole("ADMIN")) {
+            redirectURL = "users";
         }
 
         response.sendRedirect(redirectURL);

@@ -1,5 +1,7 @@
 package com.ugur.config;
 
+import java.util.List;
+
 import com.ugur.domain.Role;
 import com.ugur.domain.User;
 import com.ugur.repository.RoleRepository;
@@ -17,14 +19,34 @@ public class UserService {
     @Autowired
     RoleRepository roleRepo;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    @Autowired PasswordEncoder passwordEncoder;
 
     public void registerDefaultUser(User user) {
         Role roleUser = roleRepo.findByName("User");
         user.addRole(roleUser);
-
+        encodePassword(user);
         userRepo.save(user);
     }
 
+    public List<User> listAll() {
+        return (List<User>) userRepo.findAll();
+    }
+
+    public User get(Long id) {
+        return userRepo.findById(id).get();
+    }
+
+    public List<Role> listRoles() {
+        return roleRepo.findAll();
+    }
+
+    public void save(User user) {
+        encodePassword(user);
+        userRepo.save(user);
+    }
+
+    private void encodePassword(User user) {
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+    }
 }
