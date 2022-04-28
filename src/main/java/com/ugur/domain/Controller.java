@@ -1,22 +1,13 @@
 package com.ugur.domain;
 
-import com.ugur.repository.AnwesenheitRepo;
-import com.ugur.repository.UsersRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import java.time.LocalDateTime;
 
 
 @org.springframework.stereotype.Controller
 public class Controller {
 
-    @Autowired
-    AnwesenheitRepo anwesenheitRepo;
-
-    @Autowired
-    UsersRepo usersRepo;
 
 
     @GetMapping("/login")
@@ -27,16 +18,14 @@ public class Controller {
     }
 
     @GetMapping("/umschuler")
-    public String showAnwesenheit(Model model, Anwesenheit anwesenheit) {
-        model.addAttribute("anwesenheitToSave", anwesenheit);
-        model.addAttribute("timestamp", LocalDateTime.now());
-        System.out.println(anwesenheit);
+    public String showAnwesenheit(Model model) {
+
 
         return "umschuler";
     }
 
     @PostMapping("/umschuler")
-    public String saveAnwesenheit(Model model, Anwesenheit anwesenheit) {
+    public String saveAnwesenheit(Model model) {
 
         return "umschuler";
     }
@@ -47,7 +36,7 @@ public class Controller {
     }
 
     @PostMapping("/dozent")
-    public String saveDozent(Model model, Dozent dozent) {
+    public String saveDozent(Model model) {
         return "dozent";
     }
 

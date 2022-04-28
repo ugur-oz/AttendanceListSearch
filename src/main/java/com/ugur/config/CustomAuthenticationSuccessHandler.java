@@ -1,6 +1,16 @@
 package com.ugur.config;
 
-/*
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Set;
 
 @Configuration
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
@@ -11,9 +21,19 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
-        if (roles.contains("ROLE_ADMIN")) {
+        if (roles.contains("ROLE_USER")) {
             httpServletResponse.sendRedirect("/admin");
         } else if(roles.contains("ROLE_DOZENT")) {
+            httpServletResponse.sendRedirect("/dozent");
+        } else if(roles.contains("ROLE_EDITOR")) {
+            httpServletResponse.sendRedirect("/dozent");
+        } else if(roles.contains("ROLE_ADMIN")) {
+            httpServletResponse.sendRedirect("/dozent");
+        } else if(roles.contains("CREATOR")) {
+            httpServletResponse.sendRedirect("/dozent");
+        } else if(roles.contains("EDITOR")) {
+            httpServletResponse.sendRedirect("/dozent");
+        } else if(roles.contains("ADMIN")) {
             httpServletResponse.sendRedirect("/dozent");
         } else {
             httpServletResponse.sendRedirect("/umschuler");
@@ -21,7 +41,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
 }
     }
-*/
 
 
 
