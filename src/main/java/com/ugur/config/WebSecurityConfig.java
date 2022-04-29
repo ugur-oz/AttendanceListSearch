@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/css/**", "/images/**", "/favicon.ico", "/h2-console/**",
-                        "jdbc:h2:./target/mydb", "/target/mydb/**").permitAll()
+                        "jdbc:h2:./target/mydb", "/target/mydb/**","/templates/**").permitAll()
                 .antMatchers("/").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
                 .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")
                 .antMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
@@ -55,7 +55,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginProcessingUrl("/login")
+                .usernameParameter("username")
+                .defaultSuccessUrl("/users")
+               // .loginProcessingUrl("/login")
                 .successHandler(successHandler)
                 .loginPage("/login")
                 .permitAll()
