@@ -1,8 +1,8 @@
 CREATE TABLE Users (
                          user_id int(11) NOT NULL AUTO_INCREMENT,
                          username varchar(45) NOT NULL unique,
-                         password varchar(64) NOT NULL,
-                         enabled tinyint(4) DEFAULT NULL,
+                         password varchar(64),
+                         enabled tinyint(4) DEFAULT TRUE,
                          PRIMARY KEY (`user_id`)
 );
 

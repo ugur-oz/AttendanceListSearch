@@ -49,4 +49,7 @@ public class UserService {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
     }
+
+    public void delete(Long id) { userRepo.deleteById(id);
+    }
 }
