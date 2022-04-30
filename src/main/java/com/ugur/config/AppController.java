@@ -48,21 +48,12 @@ public class AppController {
         return "newUser";
     }
 
-    @GetMapping("/users/delete/{id}")
-    public String deleteUser(@PathVariable(name = "id") Long id, BindingResult result, Model model){
-
-        User user = service.get(id);
-        List<Role> listRoles = service.listRoles();
-        model.addAttribute("user", user);
-        model.addAttribute("listRoles", listRoles);
-
-        if(user.getRoles()==null){
-            service.delete(id);
-        }else {
-            throw new RuntimeException("Sie können es löschen, nachdem Sie den Benutzer deautorisiert haben.");
-        }
+    @RequestMapping("/users/delete/{id}")
+    public String deleteProduct(@PathVariable(name = "id") Long id) {
+        service.delete(id);
         return "redirect:/users";
     }
+
     @PostMapping("/users/save")
     public String saveUser(User user) {
         service.save(user);
