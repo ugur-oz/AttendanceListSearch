@@ -2,6 +2,7 @@ package com.ugur.config;
 
 
 
+import com.ugur.domain.Anwesenheit;
 import com.ugur.domain.Role;
 import com.ugur.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import java.util.List;
 
 @Controller
 public class AppController {
+
+    //klassenlist app da signature var
 
     @Autowired
     private UserService service;
@@ -30,6 +33,7 @@ public class AppController {
 
         return "users";
     }
+
     @GetMapping("/users/edit/{id}")
     public String editUser(@PathVariable("id") Long id, Model model) {
         User user = service.get(id);
@@ -38,7 +42,6 @@ public class AppController {
         model.addAttribute("listRoles", listRoles);
         return "edit_user";
     }
-
 
     @GetMapping("/newUser")
     public String saveUserr(Model model, User user) {
@@ -49,7 +52,7 @@ public class AppController {
     }
 
     @RequestMapping("/users/delete/{id}")
-    public String deleteProduct(@PathVariable(name = "id") Long id) {
+    public String deleteUser(@PathVariable(name = "id") Long id) {
         service.delete(id);
         return "redirect:/users";
     }
@@ -57,8 +60,23 @@ public class AppController {
     @PostMapping("/users/save")
     public String saveUser(User user) {
         service.save(user);
-
         return "redirect:/users";
     }
+
+
+
+    @GetMapping("/anwesenheit")
+    public String getSignature(Model model, Anwesenheit anwesenheit){
+
+        return "anwesenheit";
+    }
+
+    @PostMapping("/anwesenheit")
+    public String saveSignature(Model model,  Anwesenheit anwesenheit){
+        model.addAttribute("anwesenheit", anwesenheit);
+        System.out.println(anwesenheit.getSignature());
+        return "anwesenheit";
+    }
+
 
 }

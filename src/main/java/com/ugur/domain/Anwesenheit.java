@@ -20,7 +20,7 @@ public class Anwesenheit {
     private User user;
 
     @Column(name = "datum")
-    private LocalDateTime datum;
+    private LocalDateTime date;
 
     @Column(name = "signature")
     private String signature;

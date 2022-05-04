@@ -45,6 +45,15 @@
                     </th:block>
                 </div>
             </div>
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Aktiv ? </label>
+                <div class="col-8">
+                    <input type="radio" name="enabled" value="true"> Aktiv <br
+                        th:field="*{enabled}" class="form-control"/>
+                    <input type="radio" name="enabled" value="false"> Deaktiv <br
+                        th:field="*{enabled}" class="form-control"/>
+                </div>
+            </div>
 
             <div>
                 <button type="submit" class="btn btn-primary">save</button>

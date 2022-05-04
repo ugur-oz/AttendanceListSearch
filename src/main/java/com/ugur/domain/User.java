@@ -20,6 +20,7 @@ public class User {
 
     private String username;
     private String password;
+    @Column(columnDefinition = "boolean default false")
     private boolean enabled;
 
     @OneToMany(mappedBy = "user")
