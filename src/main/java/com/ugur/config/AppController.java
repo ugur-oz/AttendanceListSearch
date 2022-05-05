@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -80,6 +81,13 @@ public class AppController {
         model.addAttribute("user", userRepository.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
 
         model.addAttribute("anwesenheit", new AnwesenheitForm());
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("EEEE, dd.MM.uuuu");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+
+        LocalDateTime date = LocalDateTime.now();
+        model.addAttribute("date", dateTimeFormatter.format(date));
+        model.addAttribute("time", timeFormatter.format(date));
 
         return "anwesenheit";
     }
