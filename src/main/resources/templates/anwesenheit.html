@@ -39,19 +39,22 @@
     <br/>
     <div class="row">
         <div class="col-md-12">
-            <form method="post" action="/login" th:object="${anwesenheit}">
+            <form method="post" action="/anwesenheit" th:object="${anwesenheit}">
                 <div>
                     <label>Anwesenheit Id</label>
-                    <input type="hidden" th:field="*{id}">
                 </div>
                 <div>
+                    <label>User_id</label>
+                    <input th:value="${user.id}" name="userid">
+                </div>
+               <div>
                     <label>Datum</label>
-                    <input type="date" th:field="*{date}">
+                    <input type="datetime-local" th:field="*{date}">
                 </div>
                 <div>
                     <textarea th:field="*{signature}" id="sig-dataUrl" class="form-control" rows="5">Data URL for your signature will go here!</textarea>
-                    <button class="btn btn-primary" type="submit">Save</button>
                 </div>
+                <button class="btn btn-primary" type="submit">Save</button>
             </form>
         </div>
     </div>

@@ -1,6 +1,6 @@
 
 
-CREATE TABLE ATTENDANCE (anwesenheit_id int PRIMARY KEY,
+CREATE TABLE ATTENDANCE (anwesenheit_id int not null Auto_increment,
                          user_id int not null,
                          Datum timestamp not null,
                          signature varchar not null,

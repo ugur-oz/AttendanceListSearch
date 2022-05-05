@@ -1,22 +1,33 @@
 package com.ugur.config;
 
 
-
 import com.ugur.domain.Anwesenheit;
+import com.ugur.domain.AnwesenheitForm;
 import com.ugur.domain.Role;
 import com.ugur.domain.User;
+import com.ugur.repository.AnwesenheitRepository;
+import com.ugur.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
 public class AppController {
 
     //klassenlist app da signature var
+    @Autowired
+    AnwesenheitRepository anwesenheitRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     private UserService service;
@@ -64,18 +75,25 @@ public class AppController {
     }
 
 
-
     @GetMapping("/anwesenheit")
-    public String getSignature(Model model, Anwesenheit anwesenheit){
+    public String getSignature(Model model) {
+        model.addAttribute("user", userRepository.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
+
+        model.addAttribute("anwesenheit", new AnwesenheitForm());
 
         return "anwesenheit";
     }
 
     @PostMapping("/anwesenheit")
-    public String saveSignature(Model model,  Anwesenheit anwesenheit){
-        model.addAttribute("anwesenheit", anwesenheit);
-        System.out.println(anwesenheit.getSignature());
-        return "anwesenheit";
+    public String saveSignature(AnwesenheitForm anwesenheitForm) {
+        Anwesenheit anwesenheit = new Anwesenheit();
+
+        anwesenheit.setDate(LocalDateTime.parse(anwesenheitForm.getDate()));
+        anwesenheit.setSignature(anwesenheitForm.getSignature());
+        anwesenheit.setUser(userRepository.getById(anwesenheitForm.getUserid()));
+
+        anwesenheitRepository.save(anwesenheit);
+        return "redirect:logout";
     }
 
 
