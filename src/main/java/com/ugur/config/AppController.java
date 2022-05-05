@@ -100,6 +100,7 @@ public class AppController {
         anwesenheit.setSignature(anwesenheitForm.getSignature());
         anwesenheit.setUser(userRepository.getById(anwesenheitForm.getUserid()));
 
+
         anwesenheitRepository.save(anwesenheit);
         return "redirect:logout";
     }
