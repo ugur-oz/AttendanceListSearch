@@ -23,24 +23,24 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         if (roles.contains("ROLE_USER")) {
             httpServletResponse.sendRedirect("/admin");
-        } else if(roles.contains("ROLE_DOZENT")) {
+        } else if (roles.contains("ROLE_DOZENT")) {
             httpServletResponse.sendRedirect("/dozent");
-        } else if(roles.contains("ROLE_EDITOR")) {
+        } else if (roles.contains("ROLE_EDITOR")) {
             httpServletResponse.sendRedirect("/dozent");
-        } else if(roles.contains("ROLE_ADMIN")) {
+        } else if (roles.contains("ROLE_ADMIN")) {
             httpServletResponse.sendRedirect("/dozent");
-        } else if(roles.contains("CREATOR")) {
+        } else if (roles.contains("CREATOR")) {
             httpServletResponse.sendRedirect("/dozent");
-        } else if(roles.contains("EDITOR")) {
+        } else if (roles.contains("EDITOR")) {
             httpServletResponse.sendRedirect("/dozent");
-        } else if(roles.contains("ADMIN")) {
+        } else if (roles.contains("ADMIN")) {
             httpServletResponse.sendRedirect("/dozent");
         } else {
             httpServletResponse.sendRedirect("/umschuler");
         }
 
-}
     }
+}
 
 
 

@@ -24,5 +24,4 @@ public class Anwesenheit {
 
     @Column(name = "signature")
     private String signature;
-
 }

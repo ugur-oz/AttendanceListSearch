@@ -71,37 +71,38 @@
         }
     </style>
 </head>
-<body>
-<div class="center-block image-center" style="text-align: center;">
-    <img class="welcome img-fluid" th:src="@{images/welcome.png}">
-    <img class=" logo img-fluid" style="" th:src="@{images/mischok-logo.png}">
-</div>
-<div class="container">
-    <div class="row">
-        <div class=”col-sm-4″>
-            <form class="flex-box" method="post" th:action="@{/login}">
-                <h3 class="form-signin-heading">Welcome Back! Bitte Log In</h3>
-                <hr class="colorgraph">
-                <br>
-                <input autofocus="" class="form-control" id="username" name="username" placeholder="Username"
-                       required=""
-                       type="text"/>
-                <input class="form-control" id="password" name="password" placeholder="Password" required=""
-                       type="password"/>
-                <button class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit" value="Login">Login
-                </button>
-            </form>
-        </div>
-    </div>
-</div>
-<br>
-<div class="text--center" style="text-align: center" th:if="${param.error}">
-    <mark>Ungültiger Benutzername oder Passwort.</mark>
-    <br>
-</div>
-<br>
-<div class="text--center" style="text-align: center" th:if="${param.logout}">
-    <mark>You have been logged out.</mark>
-</div>
-</body>
+<meta charset="UTF-8">
+<title>Monatliche Ansicht</title>
+</head>
 
+<body>
+<div class="col-md-12">
+    <h1 th:inline="text">Hallo [[${#httpServletRequest.remoteUser}]]!</h1>
+    <h1>Willkommen Mischok Academy's Online Anwesenheitsliste</h1>
+</div>
+<form method="post" th:action="@{/logout}">
+    <input type="submit" value="Sign Out"/>
+</form>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+    <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Datum</th>
+        <th>Signature</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="anwesenheit: ${anwesenheitsListe}">
+        <td th:text="${anwesenheit.id}"></td>
+        <td th:text="${anwesenheit.getUser().getUsername()}"></td>
+        <td th:text="${anwesenheit.getDate()}"></td>
+       <td> <img th:src="${anwesenheit.getSignature()}"></img> </td>
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

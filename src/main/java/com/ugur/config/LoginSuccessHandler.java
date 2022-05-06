@@ -1,14 +1,13 @@
 package com.ugur.config;
 
-import java.io.IOException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-import org.springframework.stereotype.Component;
+import java.io.IOException;
 
 @Component
 public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
@@ -24,11 +23,11 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
         if (userDetails.hasRole("USER")) {
             redirectURL = "anwesenheit";
         } else if (userDetails.hasRole("CREATOR")) {
-            redirectURL = "dozent";
-        } else if (userDetails.hasRole("EDITOR")) {
             redirectURL = "index";
+        } else if (userDetails.hasRole("EDITOR")) {
+            redirectURL = "monatlich";
         } else if (userDetails.hasRole("ADMIN")) {
-            redirectURL = "users";
+            redirectURL = "index";
         }
         response.sendRedirect(redirectURL);
     }

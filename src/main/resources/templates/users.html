@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -16,10 +16,10 @@
 <div class="container text-center">
     <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
     <div>
-        <form th:action="@{/logout}" method="post">
+        <form method="post" th:action="@{/logout}">
             <div>Willkommen<span sec:authentication="principal.authorities"></span></div>
             </p>
-            <input type="submit" value="Sign Out" />
+            <input type="submit" value="Sign Out"/>
         </form>
     </div>
     <div>
@@ -47,7 +47,6 @@
             </tr>
             </tbody>
         </table>
-        <a href="/newUser">Neu User Anlegen</a>
         <p1>Löschen Sie vor dem Löschen eines Benutzers die Rollen des Benutzers aus dem Edit-Bereich.</p1>
     </div>
 </div>

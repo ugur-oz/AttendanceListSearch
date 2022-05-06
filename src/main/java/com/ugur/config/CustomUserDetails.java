@@ -1,15 +1,18 @@
 package com.ugur.config;
 
-import java.util.*;
-
 import com.ugur.domain.Role;
 import com.ugur.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
 public class CustomUserDetails implements UserDetails {
-    private User user;
+    private final User user;
 
     public CustomUserDetails(User user) {
         this.user = user;
@@ -23,8 +26,9 @@ public class CustomUserDetails implements UserDetails {
         for (Role role : roles) {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
-                return authorities;
+        return authorities;
     }
+
     public boolean hasRole(String roleName) {
         return this.user.hasRole(roleName);
     }

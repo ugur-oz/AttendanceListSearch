@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -78,16 +81,19 @@ public class AppController {
 
     @GetMapping("/anwesenheit")
     public String getSignature(Model model) {
-        model.addAttribute("user", userRepository.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
+        model.addAttribute("user",
+                userRepository.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
 
-        model.addAttribute("anwesenheit", new AnwesenheitForm());
+        model.addAttribute("anwesenheitForm", new AnwesenheitForm());
 
+        /*
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("EEEE, dd.MM.uuuu");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
 
         LocalDateTime date = LocalDateTime.now();
         model.addAttribute("date", dateTimeFormatter.format(date));
         model.addAttribute("time", timeFormatter.format(date));
+         */
 
         return "anwesenheit";
     }
@@ -104,5 +110,11 @@ public class AppController {
         return "redirect:logout";
     }
 
+    @GetMapping("/monatlich")
+    public String schowMonatlich(Model model, Anwesenheit anwesenheit) throws IOException {
+
+        model.addAttribute("anwesenheitsListe", anwesenheitRepository.findAll());
+        return "monatlich";
+    }
 
 }

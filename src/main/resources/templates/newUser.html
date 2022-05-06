@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+>
 
 <head>
     <meta charset="UTF-8">
@@ -17,22 +17,22 @@
     <h1>Create New User</h1>
     <br/>
 
-    <form th:action="@{/users/save}" th:object="${user}"
-          method="post" style="max-width: 600px; margin: 0 auto;">
-        <input type="hidden" th:field="*{id}" />
+    <form method="post" style="max-width: 600px; margin: 0 auto;"
+          th:action="@{/users/save}" th:object="${user}">
+        <input th:field="*{id}" type="hidden"/>
         <div class="m-3">
             <div class="form-group row">
                 <label class="col-4 col-form-label">Username </label>
                 <div class="col-8">
-                    <input type="text" th:field="*{username}" class="form-control" required />
+                    <input class="form-control" required th:field="*{username}" type="text"/>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-4 col-form-label">Password: </label>
                 <div class="col-8">
-                    <input type="password" th:field="*{password}" class="form-control"
-                           required minlength="6" maxlength="10"/>
+                    <input class="form-control" maxlength="10" minlength="6"
+                           required th:field="*{password}" type="password"/>
                 </div>
             </div>
 
@@ -40,23 +40,23 @@
                 <label class="col-4 col-form-label">Roles: </label>
                 <div class="col-8">
                     <th:block th:each="role: ${listRoles}">
-                        <input type="checkbox" th:field="*{roles}"
-                               th:text="${role.name}" th:value="${role.id}" class="m-2" />
+                        <input class="m-2" th:field="*{roles}"
+                               th:text="${role.name}" th:value="${role.id}" type="checkbox"/>
                     </th:block>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-4 col-form-label">Aktiv ? </label>
                 <div class="col-8">
-                    <input type="radio" name="enabled" value="true"> Aktiv <br
-                        th:field="*{enabled}" class="form-control"/>
-                    <input type="radio" name="enabled" value="false"> Deaktiv <br
-                        th:field="*{enabled}" class="form-control"/>
+                    <input name="enabled" type="radio" value="true"> Aktiv <br
+                        class="form-control" th:field="*{enabled}"/>
+                    <input name="enabled" type="radio" value="false"> Deaktiv <br
+                        class="form-control" th:field="*{enabled}"/>
                 </div>
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary">save</button>
+                <button class="btn btn-primary" type="submit">save</button>
             </div>
         </div>
     </form>

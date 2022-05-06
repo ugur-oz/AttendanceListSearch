@@ -10,11 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private LoginSuccessHandler successHandler;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -40,14 +42,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-    @Autowired
-    private LoginSuccessHandler successHandler;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/css/**", "/images/**", "/favicon.ico", "/h2-console/**",
-                        "jdbc:h2:./target/mydb", "/target/mydb/**","/templates/**").permitAll()
+                        "jdbc:h2:./target/mydb", "/target/mydb/**", "/templates/**").permitAll()
                 .antMatchers("/").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
                 .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")
                 .antMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
@@ -57,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .usernameParameter("username")
                 .defaultSuccessUrl("/users")
-               // .loginProcessingUrl("/login")
+                // .loginProcessingUrl("/login")
                 .successHandler(successHandler)
                 .loginPage("/login")
                 .permitAll()

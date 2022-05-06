@@ -1,7 +1,5 @@
 package com.ugur.config;
 
-import java.util.List;
-
 import com.ugur.domain.Role;
 import com.ugur.domain.User;
 import com.ugur.repository.RoleRepository;
@@ -10,16 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
-
-    @Autowired
-    private UserRepository userRepo;
-
     @Autowired
     RoleRepository roleRepo;
-
-    @Autowired PasswordEncoder passwordEncoder;
+    @Autowired
+    PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserRepository userRepo;
 
     public void registerDefaultUser(User user) {
         Role roleUser = roleRepo.findByName("User");
@@ -50,6 +48,7 @@ public class UserService {
         user.setPassword(encodedPassword);
     }
 
-    public void delete(Long id) { userRepo.deleteById(id);
+    public void delete(Long id) {
+        userRepo.deleteById(id);
     }
 }
