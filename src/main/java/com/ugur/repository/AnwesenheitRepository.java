@@ -14,7 +14,7 @@ public interface AnwesenheitRepository extends JpaRepository<Anwesenheit, Long> 
 
     List<Anwesenheit> findAll();
 
-    @Query(value = "select * from attendance s where s.anwesenheit_id like %:keyword% or s.user_id like %:keyword% or s.datum like %:keyword% or s.signature like %:keyword%", nativeQuery = true)
+    @Query(value = "select * from attendance s, users u where s.user_id = u.user_id and u.username like %:keyword% or s.anwesenheit_id like %:keyword% or s.user_id like %:keyword% or s.datum like %:keyword% or s.signature like %:keyword%", nativeQuery = true)
     List<Anwesenheit> findByKeyword(@Param("keyword") String keyword);
 
 

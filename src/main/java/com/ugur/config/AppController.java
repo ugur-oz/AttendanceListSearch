@@ -132,14 +132,14 @@ public class AppController {
     @Autowired
     private AnwesenheitServiceImpl  service2;
 
-    @RequestMapping(path = {"/search"})
+    @RequestMapping(path = {"/","/search"})
     public String home(Anwesenheit anwesenheit, Model model, String keyword) {
         if(keyword!=null) {
             List<Anwesenheit> list = service2.getByKeyword(keyword);
-            model.addAttribute("list", list);
+            model.addAttribute("anwesenheitsListe", list);
         }else {
             List<Anwesenheit> list = service2.getAllAnwesenheit();
-            model.addAttribute("list", list);}
+            model.addAttribute("anwesenheitsListe", list);}
         return "monatlich";
     }
 }

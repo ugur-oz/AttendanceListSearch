@@ -22,11 +22,6 @@ public class AnwesenheitServiceImpl implements AnwesenheitService {
         return anwesenheitRepository.findAll();
     }
 
-    @Override
-    public void saveAnwesenheit(Anwesenheit anwesenheit) {
-
-    }
-
 
     @Override
     public Anwesenheit getAnwesenheitById(long id) {
@@ -40,10 +35,6 @@ public class AnwesenheitServiceImpl implements AnwesenheitService {
         return anwesenheit;
     }
 
-    @Override
-    public void deleteAnwesenheitById(long id) {
-
-    }
 
     @Override
     public Page<Anwesenheit> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
