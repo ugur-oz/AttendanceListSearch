@@ -16,7 +16,7 @@
 <div align="center">
     <h1>Create New User</h1>
     <br/>
-
+    <h3><a th:href="@{/index}">Zurück</a></h3>
     <form method="post" style="max-width: 600px; margin: 0 auto;"
           th:action="@{/users/save}" th:object="${user}">
         <input th:field="*{id}" type="hidden"/>
