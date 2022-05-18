@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+
 @Entity
 @Table(name = "attendance")
 public class Anwesenheit {
@@ -24,4 +24,47 @@ public class Anwesenheit {
 
     @Column(name = "signature")
     private String signature;
+
+
+    @Override
+    public String toString() {
+        return "Anwesenheit{" +
+                "id=" + id +
+                ", user=" + user +
+                ", date=" + date +
+                ", signature='" + signature + '\'' +
+                '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
 }

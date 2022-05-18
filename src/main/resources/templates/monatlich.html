@@ -86,7 +86,7 @@
 <form th:action="@{/search}" method="get">
     <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by id or username or date" size="50" >
     <button type="submit" class="btn btn-info" >Search</button>
-    <button type="submit" class="btn btn-info" >Reset</button>
+    <a href="/monatlich" class="btn btn-info" role="button">Refresh</a>
 </form>
 <table class="table table-striped table-bordered">
     <thead class="thead-dark">
