@@ -13,16 +13,22 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 </head>
 <body>
-<h1 style="text-align: center" th:inline="text">Hallo [[${#httpServletRequest.remoteUser}]]!</h1>
-<form method="post" th:action="@{/logout}">
+<form class="text-center" autofocus="true" method="post" th:action="@{/logout}">
     <input type="submit" value="Sign Out"/>
 </form>
+<div class="center-block image-center" style="text-align: center;">
+    <img class="welcome img-fluid" th:src="@{images/index.png}">
+    <img class=" logo img-fluid" style="" th:src="@{images/mischok-logo.png}">
+</div>
+<div class="container">
+<h1 style="text-align: center" th:inline="text">Hallo [[${#httpServletRequest.remoteUser}]]!</h1>
+
 <div class="container text-center">
     <h1>Welcome to Klassenliste Applikation</h1>
-    <h3><a th:href="@{/users}">List of Users</a></h3>
-    <h3><a th:href="@{/newUser}">Neu User anlegen</a></h3>
-    <h3><a th:href="@{/login}">Login Seite</a></h3>
+    <a class="btn btn-info" role="button" th:href="@{/users}">List of Users</a>
+    <a class="btn btn-info" role="button" th:href="@{/newUser}">Neu User anlegen</a>
 </div>
 
+</div>
 </body>
 </html>

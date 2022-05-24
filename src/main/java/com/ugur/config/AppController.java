@@ -24,7 +24,6 @@ import java.util.List;
 @Controller
 public class AppController {
 
-    //klassenlist app da signature var
     @Autowired
     AnwesenheitRepository anwesenheitRepository;
 
@@ -85,7 +84,6 @@ public class AppController {
                 userRepository.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
 
         model.addAttribute("anwesenheitForm", new AnwesenheitForm());
-
         return "anwesenheit";
     }
 
